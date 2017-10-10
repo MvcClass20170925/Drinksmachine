@@ -8,7 +8,7 @@ namespace Drinksmachine.Beverages.Ingredients
 {
     public class Ingredient
     {
-        public string Name { get; private set; }
+        public string Name { get; }
 
         public Ingredient(string name)
         {
@@ -17,7 +17,7 @@ namespace Drinksmachine.Beverages.Ingredients
 
         public void Get(int amount)
         {
-
+            Console.WriteLine(Name + " Processing request for " + amount);
         }
     }
 }

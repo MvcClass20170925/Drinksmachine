@@ -9,7 +9,7 @@ namespace Drinksmachine
 {
     public class Menu
     {
-        private List<Beverage> beverages = new List<Beverage>();
+        private readonly List<Beverage> beverages = new List<Beverage>();
 
         public void AddBeverage( Beverage beverage )
         {
@@ -30,11 +30,13 @@ namespace Drinksmachine
 
                 Console.WriteLine("0)\tAfslut");
                 sel = Console.ReadKey().KeyChar;
-
-                if( sel > 49 && sel < 64 ) {
+                Console.WriteLine();
+                Console.WriteLine("----------------------------------");
+                if( sel > 48 && sel < 49 + beverages.Count ) {
+                    beverages[sel-49].Make();
                 }
 
-            } while (sel != 0);
+            } while (sel != 48);
         }
     }
 }

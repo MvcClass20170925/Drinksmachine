@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace Drinksmachine.Beverages
 {
-    public abstract class Beverage
+    public class Beverage
     {
         private struct Item
         {
-            public Ingredient Ingredient { get; set; }
-            public int Amount { get; set; }
+            public Ingredient Ingredient { get; }
+            public int Amount { get; }
 
             public Item(Ingredient ingredient, int amount )
             {
@@ -23,7 +23,7 @@ namespace Drinksmachine.Beverages
 
         public string Name { get; set; }
 
-        private List<Item> ingredients = new List<Item>();
+        private readonly List<Item> _ingredients = new List<Item>();
 
         public Beverage(string name)
         {
@@ -32,12 +32,12 @@ namespace Drinksmachine.Beverages
 
         public void AddIngredient( Ingredient ingredient, int amount )
         {
-            ingredients.Add(new Item(ingredient, amount));
+            _ingredients.Add(new Item(ingredient, amount));
         }
 
         public void Make()
         {
-            foreach( Item item in ingredients )
+            foreach( Item item in _ingredients )
             {
                 item.Ingredient.Get(item.Amount);
                 Console.WriteLine("Got: " + item.Amount + " of " + item.Ingredient.Name);
